@@ -3,6 +3,9 @@ import { View } from 'react-native';
 import { useOnboarding } from '../../contexts/onboarding-context';
 import { useRevenueCat } from '../../contexts/revenuecat-context';
 import { OnboardingButton } from './components/onboarding-button';
+import { StepHeader } from './components/step-header';
+
+const TOTAL_STEPS = 2;
 
 export default function OnboardingLayout() {
     const pathname = usePathname();
@@ -11,6 +14,7 @@ export default function OnboardingLayout() {
     const { presentPaywall } = useRevenueCat();
 
     const isSetup = pathname.includes('setup');
+    const currentStep = isSetup ? 2 : 1;
 
     const handlePress = async () => {
         if (isSetup) {
@@ -31,12 +35,13 @@ export default function OnboardingLayout() {
 
     return (
         <View className="flex-1 bg-background">
+            <StepHeader currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+            
             <View className="flex-1">
                 <Stack
                     screenOptions={{
                         headerShown: false,
-                        animation: 'fade',
-                        animationDuration: 250,
+                        animation: 'slide_from_right',
                     }}
                 />
             </View>
