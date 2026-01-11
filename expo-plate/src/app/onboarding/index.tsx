@@ -1,12 +1,28 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppText } from '../../components/app-text';
 
 export default function WelcomeScreen() {
-  return (
-    <View className="flex-1 p-6">
-      <View className="flex-1 justify-center items-center">
-        <Text className="text-3xl font-bold text-[#333] mb-3 text-center">Welcome to Vibely</Text>
-        <Text className="text-lg text-[#666] text-center">Your AI-powered dating assistant</Text>
-      </View>
-    </View>
-  );
+    const insets = useSafeAreaInsets();
+
+    return (
+        <View
+            className="flex-1 bg-background px-6"
+            style={{ paddingTop: 40 }}
+        >
+            <View className="flex-1 items-center">
+                <View className="size-20 bg-primary/10 rounded-3xl items-center justify-center mb-8">
+                    <AppText className="text-4xl">🚀</AppText>
+                </View>
+
+                <AppText className="text-4xl font-bold text-foreground text-center mb-4">
+                    Welcome to Expo Plate
+                </AppText>
+
+                <AppText className="text-lg text-muted text-center leading-relaxed">
+                    The ultimate boilerplate for high-performance React Native apps with Expo.
+                </AppText>
+            </View>
+        </View>
+    );
 }

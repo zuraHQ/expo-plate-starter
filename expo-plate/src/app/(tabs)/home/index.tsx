@@ -2,7 +2,7 @@ import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Button, Card, Chip, cn } from 'heroui-native';
-import { storage, StorageKeys } from '../../helpers/utils/storage';
+import { storage, StorageKeys } from '../../../helpers/utils/storage';
 import type { FC } from 'react';
 import { Image, Pressable, View } from 'react-native';
 import Animated, {
@@ -13,9 +13,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { withUniwind } from 'uniwind';
-import { AppText } from '../../components/app-text';
-import { ScreenScrollView } from '../../components/screen-scroll-view';
-import { useAppTheme } from '../../contexts/app-theme-context';
+import { AppText } from '../../../components/app-text';
+import { ScreenScrollView } from '../../../components/screen-scroll-view';
+import { useAppTheme } from '../../../contexts/app-theme-context';
+import { DevTools } from '../../../components/dev-tools';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedImage = Animated.createAnimatedComponent(Image);
@@ -42,26 +43,6 @@ const cards: HomeCardProps[] = [
     count: 23,
     footer: 'Explore all components',
     path: 'components',
-  },
-  {
-    title: 'Themes',
-    imageLight:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/home-themes-light.png',
-    imageDark:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/home-themes-dark.png',
-    count: 4,
-    footer: 'Try different themes',
-    path: 'themes',
-  },
-  {
-    title: 'Showcases',
-    imageLight:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/home-showcases-light.png',
-    imageDark:
-      'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/home-showcases-dark-1.png',
-    count: 5,
-    footer: 'View components in action',
-    path: 'showcases',
   },
 ];
 
@@ -95,7 +76,7 @@ const HomeCard: FC<HomeCardProps & { index: number }> = ({
       entering={FadeInDown.duration(300)
         .delay(index * 100)
         .easing(Easing.out(Easing.ease))}
-      onPress={() => router.push(path)}
+      onPress={() => router.push(path as any)}
     >
       <Card
         className={cn(
@@ -156,14 +137,7 @@ export default function App() {
   const { isDark } = useAppTheme();
   const router = useRouter();
 
-  const handleResetOnboarding = () => {
-    storage.remove(StorageKeys.ONBOARDING_DONE);
-    storage.remove(StorageKeys.USER_GENDER);
-    storage.remove(StorageKeys.USER_AGE);
-    storage.remove(StorageKeys.USER_TEXT_STYLE);
-    storage.remove(StorageKeys.USER_TONE);
-    router.replace('/onboarding');
-  };
+  
 
   return (
     <ScreenScrollView>
@@ -184,11 +158,8 @@ export default function App() {
           />
         ))}
       </View>
-      <View className="mt-8 mb-4">
-        <Button variant="ghost" onPress={handleResetOnboarding}>
-          <Button.Label>Reset Onboarding</Button.Label>
-        </Button>
-      </View>
+
+      <DevTools />
       <StatusBar style={isDark ? 'light' : 'dark'} />
     </ScreenScrollView>
   );

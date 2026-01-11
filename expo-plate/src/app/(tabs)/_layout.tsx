@@ -65,7 +65,7 @@ export default function Layout() {
         }}
       >
         <Tabs.Screen
-          name="index"
+          name="home/index"
           options={{
             headerTitle: _renderTitle,
             title: 'Home',

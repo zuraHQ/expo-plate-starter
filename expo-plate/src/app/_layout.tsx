@@ -13,14 +13,14 @@ import {
   KeyboardAvoidingView,
   KeyboardProvider,
 } from 'react-native-keyboard-controller';
-import { useMMKVBoolean } from 'react-native-mmkv';
 import {
   configureReanimatedLogger,
   ReanimatedLogLevel,
 } from 'react-native-reanimated';
 import '../../global.css';
 import { AppThemeProvider } from '../contexts/app-theme-context';
-import { storage, StorageKeys } from '../helpers/utils/storage';
+import { OnboardingProvider, useOnboarding } from '../contexts/onboarding-context';
+import { RevenueCatProvider } from '../contexts/revenuecat-context';
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
@@ -46,10 +46,18 @@ function AppContent() {
     []
   );
 
-  const [onboardingDone] = useMMKVBoolean(StorageKeys.ONBOARDING_DONE, storage);
+  const { onboardingDone } = useOnboarding();
   const pathname = usePathname();
 
-  const shouldRedirectToOnboarding = !onboardingDone && !pathname.startsWith('/onboarding');
+
+  if (onboardingDone === null) {
+    return null;
+  }
+
+
+  if (!onboardingDone && !pathname.startsWith('/onboarding')) {
+    return <Redirect href="/onboarding" />;
+  }
 
   return (
     <AppThemeProvider>
@@ -60,7 +68,7 @@ function AppContent() {
           },
         }}
       >
-        {shouldRedirectToOnboarding ? <Redirect href="/onboarding" /> : <Slot />}
+        <Slot />
       </HeroUINativeProvider>
     </AppThemeProvider>
   );
@@ -81,7 +89,11 @@ export default function Layout() {
   return (
     <GestureHandlerRootView className="flex-1">
       <KeyboardProvider>
-        <AppContent />
+        <RevenueCatProvider>
+          <OnboardingProvider>
+            <AppContent />
+          </OnboardingProvider>
+        </RevenueCatProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>
   );
