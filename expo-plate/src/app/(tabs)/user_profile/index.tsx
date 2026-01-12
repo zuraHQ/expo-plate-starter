@@ -1,5 +1,5 @@
 import { View, Pressable } from 'react-native';
-import { Card, Switch } from 'heroui-native';
+import { Card, Divider, Switch } from 'heroui-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Feather from '@expo/vector-icons/Feather';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,9 @@ import Animated, { ZoomIn } from 'react-native-reanimated';
 import { AppText } from '../../../components/app-text';
 import { useAppTheme } from '../../../contexts/app-theme-context';
 import { withUniwind } from 'uniwind';
+import { Stack } from 'expo-router';
+import { DevTools } from '@/src/components/dev-tools';
+
 
 const StyledIonicons = withUniwind(Ionicons);
 
@@ -34,12 +37,22 @@ export default function SettingsScreen() {
     const { toggleTheme, isDark } = useAppTheme();
 
     return (
+        <>
+        <Stack.Screen
+            options={{
+                headerTitle: '',
+                headerShadowVisible: false,
+                headerBackButtonDisplayMode: 'default',
+                
+            }}
+        />
         <View
             className="flex-1 bg-background px-4"
-            style={{ paddingTop: 20 }}
         >
-
-
+            
+            <AppText className="text-2xl mb-5 font-bold text-foreground">
+                Preferences
+            </AppText>
             <View className="gap-3">
                 <Card className="p-4 border border-border/50">
                     <View className="flex-row items-center justify-between">
@@ -95,6 +108,13 @@ export default function SettingsScreen() {
                     </Pressable>
                 ))}
             </View>
+           {__DEV__ && (
+            <View className="mt-4">
+            <AppText>Only visible in development mode</AppText>
+            <DevTools />
+              </View>
+                )}
         </View>
+        </>
     );
 }

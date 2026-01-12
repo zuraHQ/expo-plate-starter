@@ -20,7 +20,6 @@ export default function OnboardingLayout() {
         if (isSetup) {
             await setOnboardingDone(true);
 
-            // Present paywall before navigating to home
             try {
                 await presentPaywall();
             } catch (err) {

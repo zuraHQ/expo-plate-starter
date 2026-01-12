@@ -25,13 +25,10 @@ export function RevenueCatProvider({ children }: { children: React.ReactNode }) 
                 
                 await Purchases.configure({ apiKey });
 
-                // Get initial customer info
                 const info = await Purchases.getCustomerInfo();
                 if (isMounted) {
                     setCustomerInfo(info);
                 }
-
-                // Get available packages
                 try {
                     const offerings = await Purchases.getOfferings();
                     if (isMounted && offerings.current?.availablePackages) {
@@ -41,7 +38,6 @@ export function RevenueCatProvider({ children }: { children: React.ReactNode }) 
                     console.error('Error fetching offerings:', e);
                 }
 
-                // Listen for customer info updates
                 const removeListener = Purchases.addCustomerInfoUpdateListener((info) => {
                     if (isMounted) {
                         setCustomerInfo(info);
@@ -59,7 +55,6 @@ export function RevenueCatProvider({ children }: { children: React.ReactNode }) 
 
         init();
 
-        // Cleanup listener on unmount
         return () => {
             isMounted = false;
             if (listenerRemover.current) {

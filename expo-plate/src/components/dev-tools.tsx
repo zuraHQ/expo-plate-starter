@@ -1,8 +1,9 @@
 import { View } from 'react-native';
-import { Button } from 'heroui-native';
+import { Button, Divider } from 'heroui-native';
 import { useOnboarding } from '../contexts/onboarding-context';
 import { useRevenueCat } from '../contexts/revenuecat-context';
 import { storage, StorageKeys } from '../helpers/utils/storage';
+import { AppText } from './app-text';
 
 export function DevTools() {
     const { setOnboardingDone } = useOnboarding();
@@ -15,7 +16,8 @@ export function DevTools() {
     };
 
     return (
-        <View className="mt-8 mb-4 gap-3">
+        <Divider className="mt-3">
+        <View className="mt-3 gap-3">
             <Button variant="primary" className="bg-red-500" onPress={handleResetOnboarding}>
                 <Button.Label>Reset Onboarding</Button.Label>
             </Button>
@@ -23,5 +25,6 @@ export function DevTools() {
                 <Button.Label>Test Paywall</Button.Label>
             </Button>
         </View>
+        </Divider>
     );
 }
