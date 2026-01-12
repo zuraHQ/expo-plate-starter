@@ -9,8 +9,9 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.zura345.heroui-native-example"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.zura345.heroui-native-example",
+      "UIDeviceFamily": [1]
     },
     "android": {
       "adaptiveIcon": {
