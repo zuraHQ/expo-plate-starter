@@ -1,15 +1,15 @@
-# Expo Plate
+# Expo Plate 🍽️
 
-A concise **Expo SDK 54** boilerplate designed to get you shipping fast.
+A concise **Expo SDK 54** boilerplate designed to get you shipping fast. 
 
-## ⚡ Features
+## Features
 
 -   **HeroUI Native**: Beautiful, pre-built components.
 -   **Uniwind**: Tailwind CSS for Native (no runtime overhead).
 -   **Onboarding Flow**: Ready-to-use user onboarding screens.
 -   **Payments**: Integrated RevenueCat (`react-native-purchases`) for subscriptions/IAP.
 
-## 🚀 Get Started
+## Get Started
 
 1. **Install dependencies**
 
