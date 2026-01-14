@@ -11,7 +11,7 @@ export default function OnboardingLayout() {
     const pathname = usePathname();
     const router = useRouter();
     const { setOnboardingDone } = useOnboarding();
-    const { presentPaywall } = useRevenueCat();
+    const { presentPaywall, isProUser } = useRevenueCat();
 
     const isSetup = pathname.includes('setup');
     const currentStep = isSetup ? 2 : 1;
@@ -20,10 +20,12 @@ export default function OnboardingLayout() {
         if (isSetup) {
             await setOnboardingDone(true);
 
-            try {
-                await presentPaywall();
-            } catch (err) {
-                console.error("Paywall failed:", err);
+            if (!isProUser) {
+                try {
+                    await presentPaywall();
+                } catch (err) {
+                    console.error("Paywall failed:", err);
+                }
             }
             
             router.replace('/home');

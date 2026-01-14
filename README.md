@@ -9,7 +9,7 @@ A concise **Expo SDK 54** boilerplate designed to get you shipping fast.
 -   **Onboarding Flow**: Ready-to-use user onboarding screens.
 -   **Payments**: Integrated RevenueCat (`react-native-purchases`) for subscriptions/IAP.
 
-## Get Started
+## Get Started with project
 
 1. **Install dependencies**
 
@@ -37,6 +37,16 @@ A concise **Expo SDK 54** boilerplate designed to get you shipping fast.
     ```
 
 That's it. Start editing `src/app/` to build your product.
+
+## Get Started with RevenueCat 💲 
+
+1. Change app bundle in `app.json` to your app bundle ( that matches revenuecat )
+
+2. Add your RevenueCat API key & entitlements in `config/revenuecat.ts`
+
+## HeroUI Native 🎨
+
+([HeroUI Native](https://github.com/heroui-inc/heroui-native))
 
 ## 📂 Project Structure
 
