@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import { Button, Divider } from 'heroui-native';
+import { useAuth } from '@clerk/clerk-expo';
 import { useOnboarding } from '../contexts/onboarding-context';
 import { useRevenueCat } from '../contexts/revenuecat-context';
 import { storage, StorageKeys } from '../helpers/utils/storage';
@@ -8,11 +9,13 @@ import { AppText } from './app-text';
 export function DevTools() {
     const { setOnboardingDone } = useOnboarding();
     const { presentPaywall } = useRevenueCat();
+    const { signOut } = useAuth();
 
     const handleResetOnboarding = async () => {
         await setOnboardingDone(false);
         await storage.remove(StorageKeys.USER_NAME);
         await storage.remove(StorageKeys.USER_PREFERENCES);
+        await signOut();
     };
 
     return (
