@@ -2,10 +2,8 @@
 
 # Start with one command or clone repos 
 
-
-    ```bash
-    npx create-expo-plate my app
     ```
+    npx create-expo-plate my app
 
 - choose template:
 - Expo (base) - onboarding, paywall, heroUI, uniwind
