@@ -29,6 +29,8 @@ either hardcode ENV s or load from eas
 
 ## Get Started with project
 
+For convex + clerk please look into  <a href='https://github.com/zuraHQ/expo-plate-starter/tree/main/expo-convex-clerk'>this readme:</a> 
+
 1. **Install dependencies**
 
     ```bash
