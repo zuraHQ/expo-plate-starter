@@ -4,14 +4,20 @@
 
     npx create-expo-plate my app
 
-- choose template:
-- Expo (base) - onboarding, paywall, heroUI, uniwind
-- Expo + convex + clerk auth - everything above + auth, DB, backend.
+- **Expo Base** – Includes:
+  - Onboarding flow
+  - Paywall integration
+  - HeroUI Native components
+  - Uniwind (Tailwind CSS for React Native)
 
-**Expo SDK 54** boilerplate designed to get you shipping fast. 
+- **Expo Full (Convex + Clerk)** – Includes everything in **Expo Base**, plus:
+  - Convex setup (backend & database)
+  - Clerk authentication
 
-⚠️ Note: If you'r app crashes in production, it is because you missing ENV's in eas dashboard
-either hardcode ENV s or load from eas 
+✏️ Note: If you'r app crashes in production, it is because you missing ENV's in eas dashboard
+either hardcode ENV s or load from eas
+
+✏️ Don't forget to change "package": "change.pkg.name", in app.json before pushing initial app version. 
 
 ## Features
 
