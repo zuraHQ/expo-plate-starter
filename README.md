@@ -16,10 +16,11 @@
 
 ## ⚠️ Important Notes
 
-✏️ If you'r app crashes in production, it is because you missing ENV's in eas dashboard
-either hardcode ENV s or load from eas
+- If your app crashes in production, it may be due to missing environment variables in the EAS dashboard. Either hardcode the ENVs or load them from EAS.  
 
-✏️ Don't forget to change "package": "change.pkg.name", in app.json before pushing initial app version. 
+- Don't forget to change `"package": "change.pkg.name"` in `app.json` before pushing the initial app version.  
+
+- iPad support is disabled by default. To re-enable it, change `"UIDeviceFamily": [1]` to `[1, 2]` in your project settings.
 
 ## Features
 
